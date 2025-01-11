@@ -2,21 +2,15 @@ import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, MatDialogModule],
+  imports: [CommonModule, FormsModule, MatDialogModule, MatButtonModule, MatInputModule, MatFormFieldModule],
   selector: 'app-note-edit-dialog',
-  template: `
-    <h2 mat-dialog-title>Notiz bearbeiten</h2>
-    <mat-dialog-content>
-      <textarea [(ngModel)]="tempText" rows="5" style="width:100%"></textarea>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end">
-      <button mat-button (click)="cancel()">Abbrechen</button>
-      <button mat-button color="primary" (click)="save()">Speichern</button>
-    </mat-dialog-actions>
-  `
+  templateUrl: './note-edit-dialog.component.html'
 })
 export class NoteEditDialogComponent {
   tempText: string;

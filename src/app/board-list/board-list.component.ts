@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { BoardService } from '../services/board.service';
 import { Board } from '../models/board.model';
-
-// Angular Material
-import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
+
+import { BoardCreateDialogComponent } from '../board-create-dialog/board-create-dialog.component';
 
 @Component({
   standalone: true,
@@ -14,18 +16,20 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     RouterModule,
-    MatCardModule,
-    MatButtonModule
+    MatDialogModule,
+    MatButtonModule,
+    MatCardModule
   ],
-  templateUrl: './board-list.component.html', // <-- wir lagern das in eine eigene HTML-Datei aus
-  styleUrls: ['./board-list.component.css'] // <-- eigenes SCSS/CSS
+  templateUrl: './board-list.component.html',
+  styleUrls: ['./board-list.component.css']
 })
 export class BoardListComponent implements OnInit {
   boards: Board[] = [];
 
   constructor(
     private boardService: BoardService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -33,11 +37,18 @@ export class BoardListComponent implements OnInit {
   }
 
   createBoard() {
-    const title = prompt('Titel für das neue Board:') || '';
-    if (title.trim()) {
-      this.boardService.addBoard(title);
-      this.boards = this.boardService.getBoards();
-    }
+    // Öffne den Dialog
+    const dialogRef = this.dialog.open(BoardCreateDialogComponent, {
+      width: '400px'
+    });
+
+    // Wenn der Dialog geschlossen wird, gibt es ggf. einen Titel zurück
+    dialogRef.afterClosed().subscribe((title: string | null) => {
+      if (title && title.trim()) {
+        this.boardService.addBoard(title);
+        this.boards = this.boardService.getBoards();
+      }
+    });
   }
 
   openBoard(boardId: string) {

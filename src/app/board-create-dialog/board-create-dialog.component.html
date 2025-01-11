@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Neues Board anlegen</h2>
+    <mat-dialog-content>
+      <mat-label for="boardTitle">Titel des Boards:</mat-label>
+      <input
+        type="text"
+        [(ngModel)]="boardTitle"
+        id="boardTitle"
+        name="boardTitle"
+        class="board-input"
+        placeholder="z.B. Projekt X"
+      />
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-raised-button (click)="cancel()">Abbrechen</button>
+      <button mat-raised-button color="primary" (click)="save()" [disabled]="!boardTitle.trim()">
+        Speichern
+      </button>
+      
+      
+    </mat-dialog-actions>

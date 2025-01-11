@@ -7,6 +7,10 @@ import { BoardService } from '../services/board.service';
 import { Board } from '../models/board.model';
 import { Note } from '../models/note.model';
 import { NoteEditDialogComponent } from '../note-edit-dialog/note-edit-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   standalone: true,
@@ -15,7 +19,11 @@ import { NoteEditDialogComponent } from '../note-edit-dialog/note-edit-dialog.co
     CommonModule,
     RouterModule,
     DragDropModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule
     // evtl. mehr Material-Module (MatButtonModule etc.)
   ],
   templateUrl: './board-detail.component.html',
