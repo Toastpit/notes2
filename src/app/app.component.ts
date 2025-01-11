@@ -9,5 +9,5 @@ import { BoardListComponent } from './board-list/board-list.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'pinboard-project';
+  title = 'Notes';
 }
