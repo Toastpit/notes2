@@ -1,0 +1,25 @@
+<div *ngIf="board" class="board-container">
+  <h2>{{ board.title }}</h2>
+  <button (click)="addNote()">+ Note</button>
+
+  <div *ngIf="board" class="board-area">
+
+    <div *ngFor="let note of board.notes" class="note" cdkDrag [cdkDragFreeDragPosition]="{ x: note.x, y: note.y }"
+      (cdkDragEnded)="onNoteDragEnd($event, note.id)">
+      <!-- Header-Bereich -->
+      <div class="note-header">
+        <button class="close-button" (click)="deleteNote(note.id)">x</button>
+      </div>
+
+      <!-- Text-Bereich -->
+      <div class="note-text">
+        {{ note.text }}
+      </div>
+
+      <button class="edit-button" (click)="editNote(note)">Bearbeiten</button>
+    </div>
+
+
+  </div>
+
+  <div *ngIf="!board">Board nicht gefunden!</div>
