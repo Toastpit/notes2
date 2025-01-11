@@ -4,21 +4,21 @@ import { Router, RouterModule } from '@angular/router';
 import { BoardService } from '../services/board.service';
 import { Board } from '../models/board.model';
 
+// Angular Material
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
 @Component({
   standalone: true,
   selector: 'app-board-list',
-  imports: [CommonModule, RouterModule],
-  template: `
-    <h2>Boards</h2>
-    <button (click)="createBoard()">Neues Board</button>
-
-    <ul>
-      <li *ngFor="let board of boards" (click)="openBoard(board.id)">
-        {{ board.title }} ({{ board.id }})
-      </li>
-    </ul>
-  `,
-  styles: [``]
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatCardModule,
+    MatButtonModule
+  ],
+  templateUrl: './board-list.component.html', // <-- wir lagern das in eine eigene HTML-Datei aus
+  styleUrls: ['./board-list.component.css'] // <-- eigenes SCSS/CSS
 })
 export class BoardListComponent implements OnInit {
   boards: Board[] = [];
@@ -36,7 +36,7 @@ export class BoardListComponent implements OnInit {
     const title = prompt('Titel für das neue Board:') || '';
     if (title.trim()) {
       this.boardService.addBoard(title);
-      this.boards = this.boardService.getBoards(); // Refresh
+      this.boards = this.boardService.getBoards();
     }
   }
 

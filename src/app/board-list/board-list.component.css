@@ -1,0 +1,39 @@
+.page-title {
+    margin-bottom: 1rem;
+    font-family: sans-serif;
+    color: #333;
+  }
+  
+  button[mat-raised-button] {
+    margin-bottom: 1rem;
+  }
+  
+  /* Grid-Container für die Board-Karten */
+  .boards-container {
+    display: grid;
+    padding: 10px 25px 10px 10px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  
+  /* Jede Karte */
+  .board-card {
+    cursor: pointer; /* Signalisiert, dass man die Karte anklicken kann */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    padding: 10px 25px 10px 10px;
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+  
+    mat-card-title {
+      font-weight: 600;
+    }
+  
+    mat-card-subtitle {
+      font-size: 0.8rem;
+      color: #666;
+    }
+  }
+  

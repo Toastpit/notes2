@@ -1,1 +1,21 @@
-<p>board-list works!</p>
+<h2 class="page-title">Meine Boards</h2>
+
+<!-- Button zum Anlegen neuer Boards -->
+<button mat-raised-button color="primary" (click)="createBoard()">
+  + Neues Board
+</button>
+
+<!-- Grid-Layout für die Karten -->
+<div class="boards-container">
+  <mat-card
+    *ngFor="let board of boards"
+    class="board-card"
+    (click)="openBoard(board.id)"
+  >
+    <mat-card-title>{{ board.title }}</mat-card-title>
+    <mat-card-content>
+      <!-- Hier könntest du z.B. Anzahl der Notizen oder Kurzbemerkung anzeigen -->
+      <p>{{ board.notes.length }} Notizen</p>
+    </mat-card-content>
+  </mat-card>
+</div>
